@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-webplossy no-avif">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/media.css" />
+    <title>prj</title>
+
+    <script>
+      var imageData = {
+        avif: 'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=',
+        webp: 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA',
+      };
+  
+      // Функция проверки написана на основе документации Google:
+      // https://developers.google.com/speed/webp/faq#in_your_own_javascript
+  
+      function checkImageFormatSupport(imageFormat, callback) {
+        var img = new Image();
+        
+        img.src = imageData[imageFormat];
+        
+        img.onload = function () { var result = (img.width > 0) && (img.height > 0); callback(result); };
+        img.onerror = function () { callback(false); };
+      }
+  
+      // Проверяем поддержку WebP Lossy (сжатие с потерями)
+      
+      checkImageFormatSupport('webp', function (isWebpLossySupported) {
+        if (isWebpLossySupported) {
+          document.documentElement.className = document.documentElement.className.replace('no-webplossy', 'webplossy');
+        }
+      });
+  
+      // Проверяем поддержку AVIF
+    
+      checkImageFormatSupport('avif', function (isAvifSupported) {
+        if (isAvifSupported) {
+          document.documentElement.className = document.documentElement.className.replace('no-avif', 'avif');
+        }
+      });
+  </script>
+
+  </head>
+  <body>
+
+    <div class='openModal'></div>
+    <div class='modalOverlay'></div>
+    <div class='modal-content'>
+      <span class='closeModal'>&times;</span>
+      <h4 class='modalTitle'>Заказать звонок</h4>
+      <form class='modalForm' action=''>
+        <input
+          class='modalInput'
+          type='text'
+          name='fio'
+          id='fio'
+          placeholder='Имя'
+        />
+        <input class='modalInput' type='tel' name='phone' id='phone' />
+        <input class='modalInput' type='email' name='email' id='email' />
+        <button class='btn modalBtn' type='submit'>Отправить</button>
+      </form>
+    </div>
+
+    <header class="sectionHeader">
+      <div class='sectionInner'>
+        <nav class="sectionHeader_nav">
+            <a href="/">
+              svg
+            </a>
+          <a class="sectionHeader_nav-item" href="#">каталог</a></a>
+          <a class="sectionHeader_nav-item" href="#">Преимущества</a>
+          <a class="sectionHeader_nav-item" href="#">Примеры работ</a>
+          <a class="sectionHeader_nav-item" href="#">монтаж</a>
+          <a class="sectionHeader_nav-item" href="#">отзывы</a>
+          <a class="sectionHeader_nav-item" href="#">Ответы на вопросы</a>
+          <a class="sectionHeader_nav-item" href="#">контакты</a>
+        </nav>
+        <div class="sectionHeader_secondLine">
+          <h4 class="sectionHeader_secondLine-title"></h4>
+          <div class="sectionHeader_secondLine-priceList"></div>
+          <div class="sectionHeader_secondLine-logo"></div>
+          <div class="sectionHeader_secondLine-social"></div>
+          <div class="sectionHeader_secondLine-contacts"></div>
+        </div>
+      </div>
+    </header>
+    <main>
+
+    </main>
+
+   <script src="js/index.js"></script>
+  </body>
+</html>
